@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Buy Property</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body>
+    <h1>Buy Property</h1>
+    <p>Current balance: ${{ player_balance }}</p>
+
+    {% if error %}
+    <p class="error">{{ error }}</p>
+    {% endif %}
+
+    <form method="POST">
+      <label for="property">Select a property:</label>
+      <select id="property" name="property">
+        {% for property in available_properties %}
+        <option value="{{ property.id }}">{{ property.name }} - ${{ property.price }}</option>
+        {% endfor %}
+      </select>
+
+      <br>
+
+      <input type="submit" value="Buy">
+    </form>
+
+    <p><a href="{{ url_for('index') }}">Back to main page</a></p>
+  </body>
+</html>
